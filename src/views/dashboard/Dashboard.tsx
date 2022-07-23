@@ -7,6 +7,7 @@ const Dashboard = () => {
     <div className='w-screen min-h-screen bg-[#232325] pt-24'>
       <FilterForm />
       <ResultTable />
+
       <div className='flex justify-center'>
         <ShowMoreButton />
       </div>

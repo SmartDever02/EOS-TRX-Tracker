@@ -2,7 +2,8 @@ export const makeQuery = (
   account: string | undefined,
   start: string | undefined,
   end: string | undefined,
-  unit: string | undefined
+  unit: string | undefined,
+  skip: number
 ): string => {
   var baseURI = 'https://eos.hyperion.eosrio.io/v2/history/get_actions';
   var noQuery = true;
@@ -18,5 +19,5 @@ export const makeQuery = (
     baseURI += noQuery ? '?' : '&';
     baseURI += 'before' + new Date(end).toUTCString();
   }
-  return baseURI;
+  return baseURI + '&skip=' + skip;
 };

@@ -1,13 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   setAccount,
   setEndDate,
   setStartDate,
   setUnit,
 } from '../../../redux/slices/filterSlice';
+import { RootState } from '../../../redux/store';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
+  const account = useSelector((state: RootState) => state.filter.account);
+  const startDate = useSelector((state: RootState) => state.filter.startDate);
+  const endDate = useSelector((state: RootState) => state.filter.endDate);
+  const unit = useSelector((state: RootState) => state.filter.unit);
 
   const inputChange = (e: any) => {
     const inputName = e.target.name;
@@ -40,6 +45,7 @@ const FilterForm = () => {
           className='p-2 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416] text-gray-300 placeholder-slate-500'
           placeholder='tsui.mlt'
           onChange={inputChange}
+          value={account}
         />
       </div>
       <div className='flex flex-col gap-2'>
@@ -53,6 +59,7 @@ const FilterForm = () => {
           className='p-2 text-gray-300 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
           placeholder='02/02/2022'
           onChange={inputChange}
+          value={startDate}
         />
       </div>
       <div className='flex flex-col gap-2'>
@@ -66,6 +73,7 @@ const FilterForm = () => {
           className='p-2 w-[200px] text-gray-300 bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
           placeholder='04/02/2022'
           onChange={inputChange}
+          value={endDate}
         />
       </div>
       <div className='flex flex-col gap-2'>
@@ -78,11 +86,9 @@ const FilterForm = () => {
           className='p-2 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416] text-gray-300 placeholder-slate-500'
           placeholder='Ex. "USD"'
           onChange={inputChange}
+          value={unit}
         />
       </div>
-      <button className='h-12 px-12 mt-8 outline-none bg-[#257e47] hover:bg-[#2ba75b] transition-all duration-150 text-white font-bold'>
-        GET DATA
-      </button>
     </div>
   );
 };
