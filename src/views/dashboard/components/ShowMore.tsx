@@ -46,7 +46,6 @@ const ShowMoreButton = () => {
       dispatch(addSkip());
     } catch (e) {
       dispatch(setPendingStatus(false));
-      alert('No More Result');
     }
   };
 
