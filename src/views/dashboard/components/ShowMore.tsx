@@ -1,3 +1,4 @@
+import { isPending } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChangeStatus } from '../../../redux/slices/filterSlice';
@@ -18,7 +19,7 @@ const ShowMoreButton = () => {
   const startDate = useSelector((state: RootState) => state.filter.startDate);
   const endDate = useSelector((state: RootState) => state.filter.endDate);
   const unit = useSelector((state: RootState) => state.filter.unit);
-  const history = useSelector((state: RootState) => state.history.data);
+  const history = useSelector((state: RootState) => state.history);
   const filterChanged = useSelector((state: RootState) => state.filter.changed);
 
   const fetchData = async () => {
@@ -35,20 +36,26 @@ const ShowMoreButton = () => {
       startDate,
       endDate,
       unit,
-      filterChanged ? 0 : history.length * 10
+      filterChanged ? 0 : history.data.length * 10
     );
+    try {
+      const result = await axios.get(query);
 
-    const result = await axios.get(query);
-
-    dispatch(setResultData(result.data.actions));
-    dispatch(setChangeStatus());
-    dispatch(addSkip());
+      dispatch(setResultData(result.data.actions));
+      dispatch(setChangeStatus());
+      dispatch(addSkip());
+    } catch (e) {
+      dispatch(setPendingStatus(false));
+      alert('No More Result');
+    }
   };
 
   return (
     <button
       onClick={fetchData}
-      className='outline-none mt-10 mb-20 text-gray-300 bg-[#151517] hover:bg-[#131315] transition-all duration-150 w-fit px-20 py-3'
+      className={`outline-none ${
+        history.isPending ? '' : history.data.length > 0 ? 'mt-10' : ''
+      } mb-20 text-gray-300 bg-[#151517] hover:bg-[#131315] transition-all duration-150 w-fit px-20 py-3`}
     >
       Show More
     </button>

@@ -19,5 +19,5 @@ export const makeQuery = (
     baseURI += noQuery ? '?' : '&';
     baseURI += 'before' + new Date(end).toUTCString();
   }
-  return baseURI + '&skip=' + skip;
+  return baseURI + '&skip=' + skip + '&act.account=eosio.token';
 };
