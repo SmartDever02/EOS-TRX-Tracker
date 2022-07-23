@@ -1,13 +1,13 @@
 import TableHeader from './TableHeader';
 
-import { headers, fakedata } from '../../../data/table';
+import { headers } from '../../../data/table';
 import TableBody from './TableBody';
 
 const ResultTable = () => {
   return (
-    <div className='mt-10 grid grid-cols-7 px-20'>
+    <div className='mt-10 px-20'>
       <TableHeader thArray={headers} />
-      <TableBody data={fakedata} />
+      <TableBody />
     </div>
   );
 };

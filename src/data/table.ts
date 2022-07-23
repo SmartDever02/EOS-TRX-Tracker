@@ -4,7 +4,7 @@ export const headers = [
   'Sender',
   'Receiver',
   'Quantity of EOS',
-  'Price of EOS',
+  'Price of EOS in USD',
   'Amount',
 ];
 

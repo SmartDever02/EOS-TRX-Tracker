@@ -6,8 +6,8 @@ const Header = () => {
 
   return (
     <header
-      className={`absolute top-0 h-24 w-screen ${
-        pathname == '/' ? 'bg-white/5 backdrop-blur' : 'bg-[#101015]'
+      className={`fixed top-0 h-24 w-screen ${
+        pathname == '/' ? 'bg-white/5 backdrop-blur' : 'bg-[#101015] shadow-xl'
       }`}
     >
       <NavLink to='/' className='px-20 w-full h-full flex items-center gap-5'>

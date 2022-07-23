@@ -1,6 +1,6 @@
 const TableHeader = ({ thArray }: HeaderProps) => {
   return (
-    <>
+    <div className='grid grid-cols-7'>
       {thArray.map((one, index) => (
         <div
           key={'header' + index}
@@ -9,7 +9,7 @@ const TableHeader = ({ thArray }: HeaderProps) => {
           {one}
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
