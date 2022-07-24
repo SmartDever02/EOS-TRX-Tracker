@@ -1,4 +1,5 @@
 import Loader from '../../../components/Loading/Loader';
+import { getRandomPrice } from '../../../utils/helper';
 
 const DataBlock = ({ data }: BlockProps) => {
   return (
@@ -12,6 +13,9 @@ const DataBlock = ({ data }: BlockProps) => {
         <></>
       )}
       {data.map((row: any, rIndex: number) => {
+        const price = getRandomPrice(
+          new Date(row.timestamp).toLocaleDateString()
+        );
         return (
           <div
             key={'row' + rIndex}
@@ -34,8 +38,8 @@ const DataBlock = ({ data }: BlockProps) => {
                 : row.act.data.to}
             </Cell>
             <Cell>{row.act.data.amount}</Cell>
-            <Cell>{10}</Cell>
-            <Cell>{10 * row.act.data.amount}</Cell>
+            <Cell>{price.toFixed(3)}</Cell>
+            <Cell>{(price * row.act.data.amount).toFixed(3)}</Cell>
           </div>
         );
       })}

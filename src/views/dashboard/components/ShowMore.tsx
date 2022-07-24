@@ -1,5 +1,6 @@
 import { isPending } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setChangeStatus } from '../../../redux/slices/filterSlice';
 
@@ -13,6 +14,7 @@ import { RootState } from '../../../redux/store';
 import { makeQuery } from '../../../utils/helper';
 
 const ShowMoreButton = () => {
+  const [disabled, setDisabled] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const account = useSelector((state: RootState) => state.filter.account);
@@ -30,6 +32,7 @@ const ShowMoreButton = () => {
 
     filterChanged && dispatch(setEmpty());
     dispatch(setPendingStatus(true));
+    setDisabled(true);
 
     var query = makeQuery(
       account,
@@ -47,6 +50,9 @@ const ShowMoreButton = () => {
     } catch (e) {
       dispatch(setPendingStatus(false));
     }
+    setTimeout(() => {
+      setDisabled(false);
+    }, 1000);
   };
 
   return (
@@ -54,9 +60,12 @@ const ShowMoreButton = () => {
       onClick={fetchData}
       className={`outline-none ${
         history.isPending ? '' : history.data.length > 0 ? 'mt-10' : ''
-      } mb-20 text-gray-300 bg-[#151517] hover:bg-[#131315] transition-all duration-150 w-fit px-20 py-3`}
+      } mb-20 text-gray-300 bg-[#151517] ${
+        !disabled ? 'hover:bg-[#131315]' : ''
+      } transition-all duration-150 w-fit px-20 py-3`}
+      disabled={disabled}
     >
-      Show More
+      {history.data.length === 0 ? 'Get Data' : 'Show More'}
     </button>
   );
 };

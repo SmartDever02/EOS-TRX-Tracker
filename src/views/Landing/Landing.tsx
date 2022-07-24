@@ -13,7 +13,7 @@ const Landing = () => {
         </p>
         <Link
           to='/dashboard'
-          className='w-fit mt-[150px] text-2xl text-gray-800 font-bold px-10 py-4 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-200'
+          className='w-fit mt-[150px] text-2xl text-gray-900 font-bold px-10 py-4 rounded-xl bg-white/30 hover:bg-white/50 transition-all duration-200 backdrop-blur-sm'
         >
           Get Started
         </Link>
