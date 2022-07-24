@@ -13,11 +13,11 @@ export const makeQuery = (
   }
   if (start) {
     baseURI += noQuery ? '?' : '&';
-    baseURI += 'after=' + new Date(start).toUTCString();
+    baseURI += 'after=' + new Date(start).toISOString();
   }
   if (end) {
     baseURI += noQuery ? '?' : '&';
-    baseURI += 'before' + new Date(end).toUTCString();
+    baseURI += 'before=' + new Date(end).toISOString();
   }
   return baseURI + '&skip=' + skip + '&act.account=eosio.token';
 };
@@ -27,13 +27,9 @@ export const getRandomPrice = (date: string) => {
     (one, index) => one.date?.toLocaleDateString() === date
   );
   var max, min;
-  if (priceData.length !== 0) {
-    max = price[0].value.max;
-    min = price[0].value.min;
-  } else {
-    max = otherPrice.value.max;
-    min = otherPrice.value.min;
-  }
+  // alert(JSON.stringify(price));
+  max = price.length > 0 ? price[0].value.max : otherPrice.value.max;
+  min = price.length > 0 ? price[0].value.min : otherPrice.value.min;
   return (Math.random() * (max - min) + min) / 10000;
 };
 
@@ -86,6 +82,6 @@ const otherPrice = {
   date: '2016 - 2022/7/18',
   value: {
     min: 10772,
-    max: 32632,
+    max: 12632,
   },
 };

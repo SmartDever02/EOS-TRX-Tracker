@@ -65,7 +65,7 @@ const ShowMoreButton = () => {
       } transition-all duration-150 w-fit px-20 py-3`}
       disabled={disabled}
     >
-      {history.data.length === 0 ? 'Get Data' : 'Show More'}
+      {history.data.length === 0 || filterChanged ? 'Get Data' : 'Show More'}
     </button>
   );
 };
