@@ -22,7 +22,8 @@ export const historySlice = createSlice({
     },
     setResultData: (state, action: PayloadAction<Array<any>>) => {
       state.isPending = false;
-      state.data = [...state.data, action.payload];
+      if (action.payload.length !== 0)
+        state.data = [...state.data, action.payload];
     },
     setPendingStatus: (state, action: PayloadAction<boolean>) => {
       state.isPending = action.payload;

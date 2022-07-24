@@ -53,7 +53,7 @@ const FilterForm = () => {
           Beginning Date
         </label>
         <input
-          type='date'
+          type='datetime-local'
           name='startDate'
           id='startdate'
           className='p-2 text-gray-300 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
@@ -67,7 +67,7 @@ const FilterForm = () => {
           End Date
         </label>
         <input
-          type='date'
+          type='datetime-local'
           id='endDate'
           name='endDate'
           className='p-2 w-[200px] text-gray-300 bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
