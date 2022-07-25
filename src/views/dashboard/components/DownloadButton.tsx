@@ -48,25 +48,47 @@ const DownloadButton = () => {
         csvData.push(_elem);
       });
     });
+    alert(Heading[0].quantity.length);
     const wscols = [
       {
-        wch: Math.max(...csvData.map((history) => history.date.length)),
+        wch: Math.max(
+          Math.max(...csvData.map((history) => history.date.length)),
+          Heading[0].date.length
+        ),
       },
       {
-        wch: Math.max(...csvData.map((history) => history.time.length)),
-      },
-      { wch: Math.max(...csvData.map((history) => history.sender.length)) },
-      {
-        wch: Math.max(...csvData.map((history) => history.receiver.length)),
-      },
-      {
-        wch: Math.max(...csvData.map((history) => history.quantity.length)),
+        wch: Math.max(
+          Math.max(...csvData.map((history) => history.time.length)),
+          Heading[0].time.length
+        ),
       },
       {
-        wch: Math.max(...csvData.map((history) => history.price.length)),
+        wch: Math.max(
+          Math.max(...csvData.map((history) => history.sender.length)),
+          Heading[0].sender.length
+        ),
       },
       {
-        wch: Math.max(...csvData.map((history) => history.amount.length)),
+        wch: Math.max(
+          Math.max(...csvData.map((history) => history.receiver.length)),
+          Heading[0].receiver.length
+        ),
+      },
+      {
+        wch: Heading[0].quantity.length,
+      },
+      {
+        wch: Math.max(
+          Math.max(...csvData.map((history) => history.price.length)),
+          Heading[0].price.length
+        ),
+      },
+      {
+        wch:
+          Math.max(
+            Math.max(...csvData.map((history) => history.amount.length)),
+            Heading[0].amount.length
+          ) + 3,
       },
     ];
 
