@@ -23,8 +23,8 @@ const DataBlock = ({ data }: BlockProps) => {
               rIndex % 2 === 0 ? '' : 'bg-[#181820]'
             }`}
           >
-            <Cell>{new Date(row.timestamp).toLocaleDateString()}</Cell>
-            <Cell>{new Date(row.timestamp).toLocaleTimeString()}</Cell>
+            <Cell>{row.date}</Cell>
+            <Cell>{row.time}</Cell>
             <Cell>
               {row.act.account === 'eosmarketplc'
                 ? row.act.data.account
@@ -37,9 +37,9 @@ const DataBlock = ({ data }: BlockProps) => {
                 ? row.act.data.business
                 : row.act.data.to}
             </Cell>
-            <Cell>{row.act.data.amount}</Cell>
-            <Cell>{price.toFixed(3)}</Cell>
-            <Cell>{(price * row.act.data.amount).toFixed(3)}</Cell>
+            <Cell>{row.quantity}</Cell>
+            <Cell>{row.price.toFixed(3)}</Cell>
+            <Cell>{(row.price * row.quantity).toFixed(3)}</Cell>
           </div>
         );
       })}

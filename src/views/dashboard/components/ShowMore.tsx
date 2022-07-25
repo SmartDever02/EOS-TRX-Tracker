@@ -60,7 +60,7 @@ const ShowMoreButton = () => {
       onClick={fetchData}
       className={`outline-none ${
         history.isPending && history.skip !== 0 ? '' : 'mt-10'
-      } mb-20 text-gray-300 bg-[#151517] ${
+      } text-gray-300 bg-[#151517] ${
         !disabled ? 'hover:bg-[#131315]' : ''
       } transition-all duration-150 w-fit px-20 py-3`}
       disabled={disabled}
