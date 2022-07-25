@@ -58,7 +58,7 @@ const ShowMoreButton = () => {
   return (
     <button
       onClick={fetchData}
-      className={`outline-none ${
+      className={`outline-none mb-20 ${
         history.isPending && history.skip !== 0 ? '' : 'mt-10'
       } text-gray-300 bg-[#151517] ${
         !disabled ? 'hover:bg-[#131315]' : ''
