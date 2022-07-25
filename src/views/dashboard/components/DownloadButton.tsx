@@ -48,7 +48,6 @@ const DownloadButton = () => {
         csvData.push(_elem);
       });
     });
-    alert(Heading[0].quantity.length);
     const wscols = [
       {
         wch: Math.max(
