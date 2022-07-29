@@ -33,7 +33,6 @@ export const historySlice = createSlice({
       state.data = [];
     },
     setResultData: (state, action: PayloadAction<Array<any>>) => {
-      state.isPending = false;
       if (action.payload.length !== 0) {
         var payload: Array<CellType> = [];
         action.payload.forEach((elem) => {
@@ -52,7 +51,6 @@ export const historySlice = createSlice({
           };
           payload.push(data);
         });
-
         state.data = [...state.data, payload];
       }
     },
@@ -60,7 +58,7 @@ export const historySlice = createSlice({
       state.isPending = action.payload;
     },
     addSkip: (state) => {
-      state.skip = state.skip + 10;
+      state.skip = state.skip + 1000;
     },
   },
 });

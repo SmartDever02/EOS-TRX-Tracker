@@ -19,7 +19,31 @@ export const makeQuery = (
     baseURI += noQuery ? '?' : '&';
     baseURI += 'before=' + new Date(end).toISOString();
   }
-  return baseURI + '&skip=' + skip + '&act.account=eosio.token';
+  return baseURI + '&skip=' + skip + '&act.account=eosio.token&limit=1000';
+};
+
+export const makeLoopQuery = (
+  account: string | undefined,
+  start: string | undefined,
+  end: string | undefined,
+  unit: string | undefined,
+): string => {
+  var baseURI = 'https://eos.hyperion.eosrio.io/v2/history/get_actions';
+  var noQuery = true;
+  if (account) {
+    baseURI += `?account=${account}`;
+    noQuery = false;
+  }
+  if (start) {
+    baseURI += noQuery ? '?' : '&';
+    baseURI += 'after=' + new Date(start).toISOString();
+  }
+  if (end) {
+    baseURI += noQuery ? '?' : '&';
+    baseURI += 'before=' + new Date(end).toISOString();
+  }
+  baseURI += '&limit=1000'
+  return baseURI;
 };
 
 export const getRandomPrice = (date: string) => {

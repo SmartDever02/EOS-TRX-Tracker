@@ -56,7 +56,7 @@ const FilterForm = () => {
           type='datetime-local'
           name='startDate'
           id='startdate'
-          className='p-2 text-gray-300 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
+          className='p-2 text-gray-300 w-[220px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
           placeholder='02/02/2022'
           onChange={inputChange}
           value={startDate}
@@ -70,7 +70,7 @@ const FilterForm = () => {
           type='datetime-local'
           id='endDate'
           name='endDate'
-          className='p-2 w-[200px] text-gray-300 bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
+          className='p-2 w-[220px] text-gray-300 bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416]'
           placeholder='04/02/2022'
           onChange={inputChange}
           value={endDate}

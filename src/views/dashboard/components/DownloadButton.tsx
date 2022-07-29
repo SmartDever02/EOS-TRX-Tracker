@@ -133,7 +133,7 @@ const DownloadButton = () => {
   return (
     <button
       onClick={exportToCSV}
-      className='text-white font-bold text-xl h-fit w-fit mr-20 outline-none px-16 py-3 hover:bg-[#252527] transition-all duration-150'
+      className='text-white text-xl h-fit w-fit outline-none px-16 py-3 bg-[#161618] hover:bg-[#141416] transition-all duration-150'
     >
       Download
     </button>

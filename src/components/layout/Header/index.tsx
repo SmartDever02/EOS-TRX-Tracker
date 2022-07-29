@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
+import { RootState } from '../../../redux/store';
 import DownloadButton from '../../../views/dashboard/components/DownloadButton';
 
 const Header = () => {
+  const length = useSelector((state: RootState) => state.history.data.length);
   const pathname = useLocation().pathname;
 
   return (
@@ -14,7 +17,9 @@ const Header = () => {
         <img src='images/EOS-Coin.webp' alt='EOS' width={45} height={45} />
         <p className='text-white text-2xl'>EOS TRX Tracker</p>
       </NavLink>
-      <DownloadButton />
+      {
+        length > 0 && (<div className='mr-20'><DownloadButton /></div>)
+      }
     </header>
   );
 };
