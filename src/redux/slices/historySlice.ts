@@ -6,12 +6,22 @@ export interface EditBoxState {
   data: Array<Array<any>>;
   skip: number;
   isPending: boolean;
+  loading: LoadingType;
+}
+
+interface LoadingType {
+  total: number,
+  current: number,
 }
 
 const initialState: EditBoxState = {
   data: [],
   skip: 0,
   isPending: false,
+  loading: {
+    total: 0,
+    current: 0
+  }
 };
 
 interface CellType {
@@ -31,6 +41,9 @@ export const historySlice = createSlice({
   reducers: {
     setEmpty: (state) => {
       state.data = [];
+    },
+    setLoadingStatus: (state, action: PayloadAction<LoadingType>) => {
+        state.loading = {...action.payload};
     },
     setResultData: (state, action: PayloadAction<Array<any>>) => {
       if (action.payload.length !== 0) {
@@ -64,7 +77,7 @@ export const historySlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setResultData, setPendingStatus, addSkip, setEmpty } =
+export const { setResultData, setPendingStatus, addSkip, setEmpty, setLoadingStatus } =
   historySlice.actions;
 
 export default historySlice.reducer;

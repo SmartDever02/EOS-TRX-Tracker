@@ -7,6 +7,7 @@ import { setChangeStatus } from '../../../redux/slices/filterSlice';
 import {
   addSkip,
   setEmpty,
+  setLoadingStatus,
   setPendingStatus,
   setResultData,
 } from '../../../redux/slices/historySlice';
@@ -38,6 +39,7 @@ const ShowMoreButton = () => {
 
     filterChanged && dispatch(setEmpty());
     dispatch(setPendingStatus(true));
+    dispatch(setLoadingStatus({total: 0, current: 0}));
     localStorage.setItem('skip', '-1000');
     var skip = parseInt(localStorage.getItem('skip') ?? '-1000');
 
@@ -51,6 +53,7 @@ const ShowMoreButton = () => {
         dispatch(setChangeStatus());
         break;
       } else {
+        dispatch(setLoadingStatus({total: result.total, current: skip}));
         dispatch(setResultData(result.data));
         dispatch(setChangeStatus());
         dispatch(addSkip());
@@ -76,7 +79,7 @@ const ShowMoreButton = () => {
         </button>
       );
     case LOADING:
-      return <></>;
+      return <div className='text-white text-lg mb-20'>{history.loading.total !== 0 ? (<p>Loading transaction history, {history.loading.current + 1000} of {history.loading.total} loaded.</p>) : <p>Loading transaction history ...</p>}</div>;
     default:
       return (
         <div className='mt-10 mb-20'>

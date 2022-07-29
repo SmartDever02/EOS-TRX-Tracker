@@ -4,7 +4,7 @@ import { RootState } from '../../../redux/store';
 import DownloadButton from '../../../views/dashboard/components/DownloadButton';
 
 const Header = () => {
-  const length = useSelector((state: RootState) => state.history.data.length);
+  const history = useSelector((state: RootState) => state.history);
   const pathname = useLocation().pathname;
 
   return (
@@ -18,7 +18,7 @@ const Header = () => {
         <p className='text-white text-2xl'>EOS TRX Tracker</p>
       </NavLink>
       {
-        length > 0 && (<div className='mr-20'><DownloadButton /></div>)
+        history.loading.current >= history.loading.total && (<div className='mr-20'><DownloadButton /></div>)
       }
     </header>
   );
