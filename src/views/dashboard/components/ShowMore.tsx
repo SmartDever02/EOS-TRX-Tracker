@@ -31,7 +31,7 @@ const ShowMoreButton = () => {
   const filterChanged = useSelector((state: RootState) => state.filter.changed);
 
   const fetchData = async () => {
-    if (!account) {
+    if (!account || !startDate || !endDate) {
       alert('Account form need to be filled.');
       return;
     }
