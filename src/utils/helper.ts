@@ -8,9 +8,9 @@ export const makeQuery = (
   var baseURI = 'https://eos.hyperion.eosrio.io/v2/history/get_actions';
   var noQuery = true;
   if (account) {
-    baseURI += `?account=${account}`;
+    baseURI += `?account=${account}&transfer.from=${account}`;
     noQuery = false;
-  }
+  } 
   if (start) {
     baseURI += noQuery ? '?' : '&';
     baseURI += 'after=' + new Date(start).toISOString();

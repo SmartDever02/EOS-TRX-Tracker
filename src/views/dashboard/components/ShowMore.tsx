@@ -39,21 +39,28 @@ const ShowMoreButton = () => {
 
     filterChanged && dispatch(setEmpty());
     dispatch(setPendingStatus(true));
-    dispatch(setLoadingStatus({total: 0, current: 0}));
+    dispatch(setLoadingStatus({ total: 0, current: 0 }));
     localStorage.setItem('skip', '-1000');
     var skip = parseInt(localStorage.getItem('skip') ?? '-1000');
 
     setStatus(LOADING);
-    while(true) {
+    while (true) {
       skip += 1000;
       localStorage.setItem('skip', skip.toString());
-      let result = await fetchWithLooping(account, startDate, endDate, unit, skip);
+      let result = await fetchWithLooping(
+        account,
+        startDate,
+        endDate,
+        unit,
+        skip
+      );
       if (result.stop) {
         dispatch(setResultData(result.data));
         dispatch(setChangeStatus());
         break;
       } else {
-        dispatch(setLoadingStatus({total: result.total, current: skip}));
+        dispatch(setLoadingStatus({ total: result.total, current: skip }));
+        console.log(result.data);
         dispatch(setResultData(result.data));
         dispatch(setChangeStatus());
         dispatch(addSkip());
@@ -75,27 +82,59 @@ const ShowMoreButton = () => {
             history.isPending && history.skip !== 0 ? '' : 'mt-10'
           } text-gray-300 bg-[#151517] transition-all duration-150 w-fit px-20 py-3`}
         >
-          {history.data.length === 0 || filterChanged ? 'Get Data' : 'Show More'}
+          {history.data.length === 0 || filterChanged
+            ? 'Get Data'
+            : 'Show More'}
         </button>
       );
     case LOADING:
-      return <div className='text-white text-lg mb-20'>{history.loading.total !== 0 ? (<p>Loading transaction history, {history.loading.current + 1000} of {history.loading.total} loaded.</p>) : <p>Loading transaction history ...</p>}</div>;
+      return (
+        <div className='text-white text-lg mb-20'>
+          {history.loading.total !== 0 ? (
+            <p>
+              Loading transaction history, {history.loading.current + 1000} of{' '}
+              {history.loading.total} loaded.
+            </p>
+          ) : (
+            <p>Loading transaction history ...</p>
+          )}
+        </div>
+      );
     default:
       return (
         <div className='mt-10 mb-20'>
-          <div className={`${modal ? 'visible z-10' : '-z-10 invisible'} transition-all duration-500n`}>
+          <div
+            className={`${
+              modal ? 'visible z-10' : '-z-10 invisible'
+            } transition-all duration-500n`}
+          >
             <div className='fixed top-0 left-0 w-screen h-screen bg-black/25 backdrop-blur' />
             <div className='fixed w-2/3 lg:w-1/2 bg-black/80 py-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-3xl shadow-xl'>
-              <h2 className='text-white font-bold text-2xl w-full text-center pb-5'>ESO TRX TRACKER</h2>
-              <p className='text-gray-200 px-20 text-center pb-10'>Historical transaction data is prepared for you. You can download it as XLSX format.</p> 
+              <h2 className='text-white font-bold text-2xl w-full text-center pb-5'>
+                ESO TRX TRACKER
+              </h2>
+              <p className='text-gray-200 px-20 text-center pb-10'>
+                Historical transaction data is prepared for you. You can
+                download it as XLSX format.
+              </p>
               <div className='px-10 flex justify-center'>
                 <DownloadButton />
-                <button onClick={() => setModal(false)} className='ml-20 text-white text-xl h-fit outline-none px-16 py-3 bg-[#161618]  hover:bg-[#141416] transition-all duration-150'>Dismiss</button>
+                <button
+                  onClick={() => setModal(false)}
+                  className='ml-20 text-white text-xl h-fit outline-none px-16 py-3 bg-[#161618]  hover:bg-[#141416] transition-all duration-150'
+                >
+                  Dismiss
+                </button>
               </div>
             </div>
           </div>
-          <DownloadButton/>
-          <button onClick={() => window.scrollTo(0, 0)} className='ml-20 text-white text-xl h-fit w-fit mr-20 outline-none px-16 py-3 bg-[#161618]  hover:bg-[#141416] transition-all duration-150'>Go Up</button>
+          <DownloadButton />
+          <button
+            onClick={() => window.scrollTo(0, 0)}
+            className='ml-20 text-white text-xl h-fit w-fit mr-20 outline-none px-16 py-3 bg-[#161618]  hover:bg-[#141416] transition-all duration-150'
+          >
+            Go Up
+          </button>
         </div>
       );
   }
