@@ -136,9 +136,10 @@ const ShowMoreButton = () => {
             <div className='flex items-center justify-center gap-20 px-20'>
               <Loader />
               <div className='text-white'>
-                Adjusting with historical prices of EOS token...
+                The more transaction history you need the more you you should
+                wait
                 <br />
-                Wait for a minute...
+                Adjusting with historical prices of EOS token...
               </div>
             </div>
           </div>
