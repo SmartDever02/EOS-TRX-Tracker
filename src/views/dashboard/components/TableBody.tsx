@@ -8,7 +8,7 @@ const TableBody = () => {
   const history = useSelector((state: RootState) => state.history);
 
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
+    !history.fetchingPrice && window.scrollTo(0, document.body.scrollHeight);
   });
 
   return (

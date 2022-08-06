@@ -1,6 +1,3 @@
-import Loader from '../../../components/Loading/Loader';
-import { getRandomPrice } from '../../../utils/helper';
-
 const DataBlock = ({ data }: BlockProps) => {
   return (
     <>
@@ -13,9 +10,6 @@ const DataBlock = ({ data }: BlockProps) => {
         <></>
       )}
       {data.map((row: any, rIndex: number) => {
-        const price = getRandomPrice(
-          new Date(row.timestamp).toLocaleDateString()
-        );
         return (
           <div
             key={'row' + rIndex}
@@ -38,21 +32,25 @@ const DataBlock = ({ data }: BlockProps) => {
                 : row.act.data.to}
             </Cell>
             <Cell>{row.quantity}</Cell>
-            <Cell>{row.price.toFixed(3)}</Cell>
-            <Cell>{(row.price * row.quantity).toFixed(3)}</Cell>
+            <Cell addClass={row.correct ? 'text-green-600' : ''}>
+              {row.price.toFixed(3)}
+            </Cell>
+            <Cell addClass={row.correct ? 'text-lime-600' : ''}>
+              {(row.price * row.quantity).toFixed(3)}
+            </Cell>
           </div>
         );
       })}
     </>
   );
 };
-
-const Cell = ({ children }: CellProps) => {
-  return <span className='py-2'>{children}</span>;
+const Cell = ({ children, addClass }: CellProps) => {
+  return <span className={`py-2 ${addClass ?? ''}`}>{children}</span>;
 };
 
 interface CellProps {
   children: any;
+  addClass?: string;
 }
 
 interface BlockProps {
