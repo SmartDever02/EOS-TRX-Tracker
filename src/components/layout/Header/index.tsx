@@ -17,9 +17,11 @@ const Header = () => {
         <img src='images/EOS-Coin.webp' alt='EOS' width={45} height={45} />
         <p className='text-white text-2xl'>EOS TRX Tracker</p>
       </NavLink>
-      {
-        history.loading.current >= history.loading.total && (<div className='mr-20'><DownloadButton /></div>)
-      }
+      {history.loading.current >= history.loading.total && pathname !== '/' && (
+        <div className='mr-20'>
+          <DownloadButton />
+        </div>
+      )}
     </header>
   );
 };

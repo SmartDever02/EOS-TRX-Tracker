@@ -137,7 +137,7 @@ const ShowMoreButton = () => {
               <Loader />
               <div className='text-white'>
                 The more transaction history you need the more you you should
-                wait
+                wait.
                 <br />
                 Adjusting with historical prices of EOS token...
               </div>
