@@ -1,3 +1,22 @@
+const convertTime12to24 = (time12h: string) => {
+  const [time, modifier] = time12h.split(' ');
+
+  let hours = parseInt(time.split(':')[0]);
+  let minutes = parseInt(time.split(':')[1]);
+
+  if (hours === 12) {
+    hours = 0;
+  }
+
+  if (modifier === 'PM') {
+    hours = hours + 12;
+  }
+
+  return `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')}`;
+};
+
 const DataBlock = ({ data }: BlockProps) => {
   return (
     <>
@@ -18,7 +37,7 @@ const DataBlock = ({ data }: BlockProps) => {
             }`}
           >
             <Cell>{row.date}</Cell>
-            <Cell>{row.time}</Cell>
+            <Cell>{convertTime12to24(row.time)}</Cell>
             <Cell>
               {row.act.account === 'eosmarketplc'
                 ? row.act.data.account
