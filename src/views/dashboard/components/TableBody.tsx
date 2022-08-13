@@ -22,9 +22,9 @@ const TableBody = () => {
           <Cell />
           <Cell />
           <Cell />
-          <Cell addClass='text-red-400'>{history.quantity}</Cell>
+          <Cell addClass='text-red-400'>{history.quantity.toFixed(3)}</Cell>
           <Cell></Cell>
-          <Cell addClass='text-red-500'>{history.volume}</Cell>
+          <Cell addClass='text-red-500'>{history.volume.toFixed(3)}</Cell>
         </div>
       )}
     </>
