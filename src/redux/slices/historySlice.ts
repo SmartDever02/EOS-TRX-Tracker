@@ -41,8 +41,9 @@ export const historySlice = createSlice({
           const price = getRandomPrice(
             new Date(elem.timestamp).toLocaleDateString()
           );
-          const date = new Date(elem.timestamp).toLocaleDateString();
-          const time = new Date(elem.timestamp).toLocaleTimeString();
+          const date_converted = new Date(elem.timestamp + 'Z');
+          const date = new Date(date_converted).toLocaleDateString();
+          const time = new Date(date_converted).toLocaleTimeString();
           // const price = await fetchQuote(date + ' ' + time);
 
           var data: CellType = {

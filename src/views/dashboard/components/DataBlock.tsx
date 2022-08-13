@@ -3,6 +3,7 @@ const convertTime12to24 = (time12h: string) => {
 
   let hours = parseInt(time.split(':')[0]);
   let minutes = parseInt(time.split(':')[1]);
+  let seconds = parseInt(time.split(':')[2]);
 
   if (hours === 12) {
     hours = 0;
@@ -14,7 +15,7 @@ const convertTime12to24 = (time12h: string) => {
 
   return `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
-    .padStart(2, '0')}`;
+    .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 };
 
 const DataBlock = ({ data }: BlockProps) => {
