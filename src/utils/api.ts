@@ -50,6 +50,7 @@ export const fetchQuote = async (
     }
     console.log('going on');
     if ((date - startDate) / 60000 >= 20) {
+      return;
       console.log(startDate);
     }
     date -= 60000; // 1 minute

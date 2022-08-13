@@ -64,12 +64,12 @@ const DataBlock = ({ data }: BlockProps) => {
     </>
   );
 };
-const Cell = ({ children, addClass }: CellProps) => {
+export const Cell = ({ children, addClass }: CellProps) => {
   return <span className={`py-2 ${addClass ?? ''}`}>{children}</span>;
 };
 
 interface CellProps {
-  children: any;
+  children?: any;
   addClass?: string;
 }
 

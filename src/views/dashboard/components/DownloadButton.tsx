@@ -48,6 +48,16 @@ const DownloadButton = () => {
         csvData.push(_elem);
       });
     });
+    var last_one = {
+      date: '',
+      time: '',
+      sender: '',
+      receiver: '',
+      quantity: history.quantity,
+      price: '',
+      amount: history.volume,
+    };
+    csvData.push(last_one);
     const wscols = [
       {
         wch: Math.max(

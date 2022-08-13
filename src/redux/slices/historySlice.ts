@@ -4,6 +4,8 @@ import { getRandomPrice } from '../../utils/helper';
 
 const initialState: EditBoxState = {
   data: [],
+  volume: 0,
+  quantity: 0,
   skip: 0,
   isPending: false,
   fetchingPrice: false,
@@ -36,6 +38,8 @@ export const historySlice = createSlice({
     },
     setResultData: (state, action: PayloadAction<Array<any>>) => {
       if (action.payload.length !== 0) {
+        var _quantity = 0;
+        var _volume = 0;
         var payload: Array<CellType> = [];
         action.payload.forEach((elem) => {
           const price = getRandomPrice(
@@ -57,8 +61,12 @@ export const historySlice = createSlice({
             correct: false,
             amount: price * elem.act.data.amount,
           };
+          _quantity += data.quantity;
+          _volume += data.amount;
           payload.push(data);
         });
+        state.quantity = _quantity;
+        state.volume = _volume;
         state.data = [...state.data, payload];
       }
     },
@@ -73,6 +81,8 @@ export const historySlice = createSlice({
 
 export interface EditBoxState {
   data: Array<Array<any>>;
+  volume: number;
+  quantity: number;
   skip: number;
   isPending: boolean;
   loading: LoadingType;
