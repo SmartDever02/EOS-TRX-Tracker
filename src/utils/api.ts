@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { makeQuery } from './helper';
+import { getPrice, makeQuery } from './helper';
 
 export const fetchWithLooping = async (
   account: string,
@@ -8,7 +8,7 @@ export const fetchWithLooping = async (
   unit: string,
   skip: number
 ) => {
-  var query = makeQuery(account, startDate, endDate, unit, skip);
+  var query = makeQuery(account, startDate, endDate, skip);
 
   while (true) {
     try {
@@ -30,10 +30,7 @@ export const fetchWithLooping = async (
   }
 };
 
-export const fetchQuote = async (
-  startDate: number,
-  endDate: number = startDate
-) => {
+export const fetchQuote = async (startDate: number, unit: string) => {
   const key = 'uBU2SIHGRhPsQfHsd6fNLNf6hcOgSO7W';
   var date = startDate;
   while (1) {
@@ -46,12 +43,11 @@ export const fetchQuote = async (
         result.data.results[0].t,
         result.data.results[0].c
       );
-      return result.data.results[0].c;
+      return getPrice(result.data.results[0].c, unit);
     }
     console.log('going on');
     if ((date - startDate) / 60000 >= 20) {
       return;
-      console.log(startDate);
     }
     date -= 60000; // 1 minute
   }

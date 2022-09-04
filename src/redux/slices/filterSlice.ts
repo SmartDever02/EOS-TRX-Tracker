@@ -13,7 +13,7 @@ const initialState: EditBoxState = {
   account: '',
   startDate: '',
   endDate: '',
-  unit: '',
+  unit: 'USD',
   changed: false,
 };
 

@@ -90,7 +90,7 @@ const ShowMoreButton = () => {
       const group = history.data[i];
       for (let j = 0; j < group.length; j++) {
         var date = [group[j].date, group[j].time].join(' ');
-        let result = await fetchQuote(new Date(date).getTime());
+        let result = await fetchQuote(new Date(date).getTime(), unit);
         dispatch(setPrices({ gIndex: i, eIndex: j, price: result }));
       }
     }
@@ -136,10 +136,9 @@ const ShowMoreButton = () => {
             <div className='flex items-center justify-center gap-20 px-20'>
               <Loader />
               <div className='text-white'>
-                The more transaction history you need the more you you should
-                wait.
-                <br />
-                Adjusting with historical prices of EOS token...
+                Please wait while we get the price information. The more
+                transactions, the longer it will take. This pop up will
+                disappear once completed.
               </div>
             </div>
           </div>

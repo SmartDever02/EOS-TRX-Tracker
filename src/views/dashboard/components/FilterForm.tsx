@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setAccount,
@@ -13,6 +14,7 @@ const FilterForm = () => {
   const startDate = useSelector((state: RootState) => state.filter.startDate);
   const endDate = useSelector((state: RootState) => state.filter.endDate);
   const unit = useSelector((state: RootState) => state.filter.unit);
+  const [optionVisibility, setOptionVisibility] = useState<boolean>(false);
 
   const inputChange = (e: any) => {
     const inputName = e.target.name;
@@ -80,14 +82,35 @@ const FilterForm = () => {
         <label htmlFor='unit' className='uppercase text-gray-400 pl-2'>
           Money Unit
         </label>
-        <input
+        <div
+          onClick={() => setOptionVisibility(!optionVisibility)}
+          className='relative p-2 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416] text-gray-300'
+        >
+          {unit}
+          {optionVisibility && (
+            <>
+              <ul className='absolute top-12 -left-[4px]'>
+                {['USD', 'CAD', 'GBP', 'NGN', 'MXN'].map((currency, index) => (
+                  <li
+                    key={'currency-' + index}
+                    onClick={() => dispatch(setUnit(currency))}
+                    className='first:border-t-[4px] border-[#121214] border-b-[4px] p-2 w-[200px] bg-[#121214]/90 outline-none text-gray-300 cursor-pointer hover:bg-[#121214]/60'
+                  >
+                    {currency}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+        {/* <input
           id='unit'
           name='unit'
           className='p-2 w-[200px] bg-[#121214]/30 outline-none transition-all duration-150 border-[4px] border-[#191921] focus:border-[#141416] text-gray-300 placeholder-slate-500'
           placeholder='Ex. "USD"'
           onChange={inputChange}
           value={unit}
-        />
+        /> */}
       </div>
     </div>
   );

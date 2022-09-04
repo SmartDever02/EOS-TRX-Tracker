@@ -2,7 +2,6 @@ export const makeQuery = (
   account: string | undefined,
   start: string | undefined,
   end: string | undefined,
-  unit: string | undefined,
   skip: number
 ): string => {
   var baseURI = 'https://eos.hyperion.eosrio.io/v2/history/get_actions';
@@ -10,7 +9,7 @@ export const makeQuery = (
   if (account) {
     baseURI += `?account=${account}&transfer.from=${account}`;
     noQuery = false;
-  } 
+  }
   if (start) {
     baseURI += noQuery ? '?' : '&';
     baseURI += 'after=' + new Date(start).toISOString();
@@ -26,7 +25,7 @@ export const makeLoopQuery = (
   account: string | undefined,
   start: string | undefined,
   end: string | undefined,
-  unit: string | undefined,
+  unit: string | undefined
 ): string => {
   var baseURI = 'https://eos.hyperion.eosrio.io/v2/history/get_actions';
   var noQuery = true;
@@ -42,8 +41,13 @@ export const makeLoopQuery = (
     baseURI += noQuery ? '?' : '&';
     baseURI += 'before=' + new Date(end).toISOString();
   }
-  baseURI += '&limit=1000'
+  baseURI += '&limit=1000';
   return baseURI;
+};
+
+export const getPrice = (value: number, unit: string) => {
+  if (unit === 'USD') return value;
+  return value;
 };
 
 export const getRandomPrice = (date: string) => {
