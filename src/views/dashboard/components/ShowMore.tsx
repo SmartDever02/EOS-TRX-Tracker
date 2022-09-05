@@ -91,7 +91,7 @@ const ShowMoreButton = () => {
       for (let j = 0; j < group.length; j++) {
         var date = [group[j].date, group[j].time].join(' ');
         let result = await fetchQuote(new Date(date).getTime(), unit);
-        dispatch(setPrices({ gIndex: i, eIndex: j, price: result }));
+        dispatch(setPrices({ gIndex: i, eIndex: j, price: result || 0 }));
       }
     }
     setStatus(FINISHED);
