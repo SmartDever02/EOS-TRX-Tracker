@@ -372,6 +372,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-json-to-csv@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-json-to-csv/-/react-json-to-csv-1.0.0.tgz#e305c689fa8ead3008fd9098e109fcc7337970ff"
+  integrity sha512-qhGpu8I9VJOBzXalnNHENBY+BvlekD/WLHObJE9hp6gT83/ihO4Zf6SY1t6cR1rYzHURTrZNPwKF9GXyPZ16gw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^18.0.15":
   version "18.0.15"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.0.15.tgz"
@@ -979,6 +986,11 @@ jsesc@^2.5.1:
   resolved "https://registry.npmjs.org/jsesc/-/jsesc-2.5.2.tgz"
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
+json-to-csv-export@^1.0.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/json-to-csv-export/-/json-to-csv-export-1.1.2.tgz#64ae45ab29a81b26bc65f7ed46d5bba98dda0382"
+  integrity sha512-eThPhsB6+i6+dNwCM+gDUADQXpBKn3712SDVZDPEdQ82GuycxL8ct8wrho7LOzLtMdzuP6kGs4Y6+a2lc51uTg==
+
 json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmjs.org/json5/-/json5-2.2.1.tgz"
@@ -1182,6 +1194,13 @@ react-is@^18.0.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-json-to-csv@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-json-to-csv/-/react-json-to-csv-1.0.4.tgz#42b5fcc44642ef0f1b91f01e528d4fa8745dc3b2"
+  integrity sha512-WiLLNrJ3ruyLxPN6HS5kX5EOv5I1Wj3rB2/gS3uzz3gKHTvqUMaTEVIt2lLpvLoHHWRsRy0p629qiTsTN8hemw==
+  dependencies:
+    json-to-csv-export "^1.0.2"
 
 react-redux@^8.0.2:
   version "8.0.2"

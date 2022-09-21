@@ -14,10 +14,10 @@ export const makeQuery = (
     baseURI += noQuery ? '?' : '&';
     baseURI += 'after=' + new Date(start).toISOString();
   }
-  if (end) {
-    baseURI += noQuery ? '?' : '&';
-    baseURI += 'before=' + new Date(end).toISOString();
-  }
+  // if (end) {
+  //   baseURI += noQuery ? '?' : '&';
+  //   baseURI += 'before=' + new Date(end).toISOString();
+  // }
   return baseURI + '&skip=' + skip + '&act.account=eosio.token&limit=1000';
 };
 
